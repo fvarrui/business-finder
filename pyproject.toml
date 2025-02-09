@@ -1,0 +1,37 @@
+[build-system]
+requires      = ["setuptools>=69.1.1", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "business-finder"
+version = "0.0.1"
+description = "Buscador de empresas en Google Places API"
+readme = "README.md"
+authors = [
+    { name = "Fran Vargas", email = "francisco.vargas.ruiz@gmail.com" }
+]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["business", "finder", "places", "api", "google" ]
+dependencies = [
+    "tabulate",
+    "requests",
+    "python-dotenv",
+]
+requires-python = ">=3.12"
+
+[project.optional-dependencies]
+dev = ["black", "bumpver", "isort", "pip-tools", "pytest"]
+
+[project.urls]
+Homepage = "https://github.com/fvarrui/business-finder"
+
+[project.scripts]
+bf = "cli.__main__:main"
+
+[tool.setuptools]
+include-package-data = true
