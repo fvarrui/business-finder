@@ -75,6 +75,8 @@ Para instalar **Business Finder** en tu sistema, puedes hacerlo desde el reposit
 pip install git+https://github.com/fvarrui/business-finder.git
 ```
 
+> Por supuesto, debes tener Python instalado en tu sistema.
+
 ## Información para desarrolladores
 
 Clonar el repositorio y entrar en el directorio:
