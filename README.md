@@ -67,7 +67,7 @@ PS> $env:GOOGLE_PLACES_API_KEY = "tu_clave_de_api"
 C:\> set GOOGLE_PLACES_API_KEY=tu_clave_de_api
 ```
 
-## Instalación
+## ¿Cómo se instala?
 
 Para instalar **Business Finder** en tu sistema, puedes hacerlo desde el repositorio de GitHub con el comando `pip`:
 
@@ -77,7 +77,9 @@ pip install git+https://github.com/fvarrui/business-finder.git
 
 > Por supuesto, debes tener Python instalado en tu sistema.
 
-## Información para desarrolladores
+## Para desarrolladores
+
+Si quieres colaborar en el desarrollo de **Business Finder**, puedes hacerlo de la siguiente manera.
 
 Clonar el repositorio y entrar en el directorio:
 
@@ -110,4 +112,6 @@ pip install -e .
 code .
 ```
 
-> ¡Tus PRs son bienvenidos!
+## ¿Cómo contribuir?
+
+¡Tus PRs son bienvenidos!
