@@ -1,6 +1,6 @@
 # Business Finder
 
-Aplicación Python que busca información de empresas por categorías en el servicio web de [Places API](https://developers.google.com/maps/documentation/places) de Google.
+Aplicación Python que busca información de empresas en el servicio web [Places API](https://developers.google.com/maps/documentation/places) de Google.
 
 > Útil para encontrar empresas de prácticas para estudiantes.
 
