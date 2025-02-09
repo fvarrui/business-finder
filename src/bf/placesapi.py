@@ -5,21 +5,23 @@ from bf.place import Place
 
 class PlacesAPI:
 
+    # URL base de la API de Google Places (New)
     BASE_URL = "https://places.googleapis.com/v1/places"
 
+    # Clave de la API de Google Places
     apikey : str = None
 
     def __init__(self, apikey: str):
         self.apikey = apikey
 
-    def __get_headers(self, fieldMask : str) -> dict:
+    def __get_headers(self, fieldMask : list[str]) -> dict:
         """
         Genera los encabezados de la solicitud.
         """
         return {
             "Content-Type": "application/json",
-            "X-Goog-Api-Key": self.apikey,
-            "X-Goog-FieldMask": fieldMask
+            "X-Goog-Api-Key": self.apikey,              # Clave de la API
+            "X-Goog-FieldMask": ",".join(fieldMask)     # Máscara de campos (https://developers.google.com/maps/documentation/places/web-service/text-search?hl=es-419#fieldmask)
         }
 
     def locate(self, address: str) -> LatLng:
@@ -32,7 +34,7 @@ class PlacesAPI:
         url = f"{self.BASE_URL}:searchText"
 
         # Encabezados de la solicitud
-        headers = self.__get_headers("places.location")
+        headers = self.__get_headers([ "places.location" ])
 
         # Cuerpo de la solicitud en formato JSON
         payload = {
@@ -58,14 +60,24 @@ class PlacesAPI:
         - radius: Radio en kilómetros para la búsqueda centrada en la ubicación especificada en locationText.
         """
 
-        # search location
+        # Busca la ubicación geográfica de la dirección (latitud y longitud), por ejemplo: "Calle Castillo, Santa Cruz de Tenerife"
         latlng = self.locate(locationText)
 
         # URL de la API de Google Places (New)
         url = f"{self.BASE_URL}:searchText?rankPreference=DISTANCE"
 
         # Encabezados de la solicitud
-        headers = self.__get_headers("places.displayName,places.formattedAddress,places.businessStatus,places.primaryTypeDisplayName,places.regularOpeningHours,places.nationalPhoneNumber,places.googleMapsLinks,places.websiteUri")
+        fieldMask = [
+            "places.displayName", 
+            "places.formattedAddress", 
+            "places.businessStatus", 
+            "places.primaryTypeDisplayName", 
+            "places.regularOpeningHours", 
+            "places.nationalPhoneNumber", 
+            "places.googleMapsLinks", 
+            "places.websiteUri" 
+        ]
+        headers = self.__get_headers(fieldMask)
 
         # Cuerpo de la solicitud en formato JSON
         payload = {
@@ -89,23 +101,10 @@ class PlacesAPI:
         # Procesar la respuesta
         if response.status_code == 200:
             places = response.json().get("places", [])
+            placesList = []
             for place in places:
-
-                type = place.get('primaryTypeDisplayName')
-                if type is None:
-                    type = "No disponible"
-                else:
-                    type = type.get('text', 'Desconocido')
-
-                print(f"Nombre    : {place.get('displayName', {}).get('text', 'Desconocido')}")
-                print(f"Dirección : {place.get('formattedAddress', 'No disponible')}")
-                #print(f"Estado    : {place.get('businessStatus', 'No disponible')}")
-                print(f"Tipo      : {type}")
-                #print(f"Horario   : {place.get('regularOpeningHours', 'No disponible')}")
-                print(f"Teléfono  : {place.get('nationalPhoneNumber', 'No disponible')}")
-                #print(f"Enlace    : {place.get('googleMapsLinks', 'No disponible')}")
-                print(f"Web       : {place.get('websiteUri', 'No disponible')}")
-                print("-" * 40)
+                placesList.append(Place(place))
+            return placesList
         else:
-            print("Error en la solicitud:", response.text)
+            raise Exception("Error en la solicitud:", response.text)
 
