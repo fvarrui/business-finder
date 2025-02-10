@@ -52,16 +52,14 @@ class PlacesAPI:
             print("Error en la solicitud:", response.text)
             return LatLng(0, 0)
 
-    def search(self, category: str, locationText: str, radius: float) -> list[Place]:
+    def search(self, category: str, latLng: LatLng, radius: float, pageToken : str = '') -> list[Place]:
         """
-        Busca empresas en una ubicación geográfica.
+        Busca todas las empresas en una ubicación geográfica.
         - category: Categoría de las empresas a buscar.
         - locationText: Ubicación para la búsqueda de empresas.
         - radius: Radio en kilómetros para la búsqueda centrada en la ubicación especificada en locationText.
+        - pageToken: Token de la página siguiente (opcional).
         """
-
-        # Busca la ubicación geográfica de la dirección (latitud y longitud), por ejemplo: "Calle Castillo, Santa Cruz de Tenerife"
-        latlng = self.locate(locationText)
 
         # URL de la API de Google Places (New)
         url = f"{self.BASE_URL}:searchText?rankPreference=DISTANCE"
@@ -75,7 +73,8 @@ class PlacesAPI:
             "places.regularOpeningHours", 
             "places.nationalPhoneNumber", 
             "places.googleMapsLinks", 
-            "places.websiteUri" 
+            "places.websiteUri",
+            "nextPageToken"
         ]
         headers = self.__get_headers(fieldMask)
 
@@ -87,12 +86,13 @@ class PlacesAPI:
             "locationBias": {
                 "circle": {
                     "center": {
-                        "latitude": latlng.latitude,
-                        "longitude": latlng.longitude
+                        "latitude": latLng.latitude,
+                        "longitude": latLng.longitude
                     },
                     "radius": float(radius) * 1000
                 }
-            }
+            },
+            "pageToken": pageToken
         }
 
         # Realizar la solicitud POST
@@ -100,11 +100,14 @@ class PlacesAPI:
 
         # Procesar la respuesta
         if response.status_code == 200:
-            places = response.json().get("places", [])
+            json = response.json()
+            places = json.get("places", [])
+            nextPageToken = json.get("nextPageToken", None)
             placesList = []
             for place in places:
                 placesList.append(Place(place))
+            if nextPageToken:
+                placesList += self.search(category, latLng, radius, nextPageToken)
             return placesList
         else:
             raise Exception("Error en la solicitud:", response.text)
-

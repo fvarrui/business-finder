@@ -70,7 +70,9 @@ def main():
         api = PlacesAPI(apikey)
 
         # Realiza la búsqueda de empresas
-        places = api.search(args.category, args.location, args.radius)
+        latLng = api.locate(args.location)
+        places = api.search(args.category, latLng, args.radius)
+        places.sort(key=lambda place: place.name.lower())
 
         if args.output:
             # Guardar los resultados en un fichero CSV
@@ -90,6 +92,9 @@ def main():
             ]
             # Mostrar la tabla con encabezados
             print(tabulate(places_data, headers=["Nombre", "Tipo", "Dirección", "Teléfono", "Web"], tablefmt="grid"))
+
+        # Cantidad de empresas encontradas
+        print(f"Se encontraron {len(places)} empresas")
 
     print(f"Tiempo transcurrido: {time.time() - start_time:.2f} s")
 
