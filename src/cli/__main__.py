@@ -65,14 +65,21 @@ def main():
 
         # Obtiene la clave de la API de Google Places
         apikey = os.getenv("GOOGLE_PLACES_API_KEY")
+        if apikey is None:
+            print("No se encontró la clave de la API de Google Places")
+            return
 
         # Crea una instancia de la API de Google Places
         api = PlacesAPI(apikey)
 
         # Realiza la búsqueda de empresas
-        latLng = api.locate(args.location)
-        places = api.search(args.category, latLng, args.radius)
-        places.sort(key=lambda place: place.name.lower())
+        try:
+            latLng = api.locate(args.location)
+            places = api.search(args.category, latLng, args.radius)
+            places.sort(key=lambda place: place.name.lower())
+        except Exception as e:
+            print("Error en la búsqueda:", e.args[1])
+            return
 
         if args.output:
             # Guardar los resultados en un fichero CSV

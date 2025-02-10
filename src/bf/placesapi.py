@@ -110,4 +110,4 @@ class PlacesAPI:
                 placesList += self.search(category, latLng, radius, nextPageToken)
             return placesList
         else:
-            raise Exception("Error en la solicitud:", response.text)
+            raise Exception("Error en la solicitud:", response.json().get("error", {}).get("message", "Desconocido"))
