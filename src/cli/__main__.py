@@ -17,11 +17,20 @@ def save_csv(places, filename):
         writer = csv.writer(file)
 
         # Escribir encabezados
-        writer.writerow(["Nombre", "Tipo", "Dirección", "Estado", "Teléfono", "Web"])
+        writer.writerow(["Nombre", "Tipo", "Dirección", "Estado", "Teléfono", "Web", "Mapa", "Horario"])
 
         # Escribir datos de los objetos
         for place in places:
-            writer.writerow([place.name, place.type, place.address, place.status, place.phone, place.website])
+            writer.writerow([
+                place.name, 
+                place.type, 
+                place.address, 
+                place.status, 
+                place.phone, 
+                place.website,
+                place.mapLink,
+                ",".join(place.timetable) if place.timetable else ""
+            ])
 
 def main():
 
@@ -94,7 +103,7 @@ def main():
                     place.type, 
                     shorten(place.address, width=40, placeholder="..."), 
                     place.phone, 
-                    place.website
+                    place.website,
                 ] for place in places
             ]
             # Mostrar la tabla con encabezados
