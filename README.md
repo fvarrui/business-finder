@@ -23,24 +23,25 @@ Para obtener ayuda sobre cómo usar el script, se puede utilizar la opción `--h
 ```bash
 $ bf --help
 
-Uso: bf (-h | -v | --search) [--category [CATEGORY]] [--location [LOCATION]] [--radius [RADIUS]] [--output [OUTPUT]]
+Uso: bf (-h | -v | --search) [--category CATEGORY] [--location LOCATION] [--latlng LATLNG] [--radius RADIUS] [--csv [OUTPUT]] [--excel [OUTPUT]] [--apikey KEY]
 
-Buscador de empresas
+Buscador de empresas chupiguay (v0.2.0)
 
 Comandos:
-  -h, --help            Muestra esta ayuda y termina
-  -v, --version         Mostrar versión
-  --search              Buscar empresas
+  -h, --help           Muestra esta ayuda y termina
+  -v, --version        Mostrar versión
+  --search             Buscar empresas
 
 Opciones:
-  --category [CATEGORY]
-                        Categoría de las empresas a buscar
-  --location [LOCATION]
-                        Ubicación para la búsqueda de empresas
-  --radius [RADIUS]     Radio en kilómetros para la búsqueda
-  --output [OUTPUT]     Fichero de salida en formato CSV
+  --category CATEGORY  Categoría de las empresas a buscar
+  --location LOCATION  Ubicación para la búsqueda de empresas (p.ej. "Santa Cruz de Tenerife, España")
+  --latlng LATLNG      Ubicación para la búsqueda de empresas en formato "latitud,longitud"
+  --radius RADIUS      Radio en kilómetros para la búsqueda
+  --csv [OUTPUT]       Fichero de salida en formato CSV
+  --excel [OUTPUT]     Fichero de salida en formato XLSX
+  --apikey KEY         Clave de API de Google Places (si no se especifica, se buscará en las variables de entorno)
 
-¡Ahora ponte a buscar empresas!
+¡Corre, que te las quita el César!
 ```
 
 ## ¿Qué se necesita?
