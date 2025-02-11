@@ -1,10 +1,10 @@
 [build-system]
-requires      = ["setuptools>=69.1.1", "wheel"]
+requires      = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "business-finder"
-version = "0.1.0"
+version = "0.2.0"
 description = "Buscador de empresas en Google Places API"
 readme = "README.md"
 authors = [
@@ -21,6 +21,7 @@ dependencies = [
     "tabulate",
     "requests",
     "python-dotenv",
+    "xlsxwriter",
 ]
 requires-python = ">=3.12"
 
