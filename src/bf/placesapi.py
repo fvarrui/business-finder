@@ -67,7 +67,7 @@ class PlacesAPI:
         fieldMask = [
             "places.displayName", 
             "places.formattedAddress", 
-            "places.businessStatus", 
+            "places.location", 
             "places.primaryTypeDisplayName", 
             "places.regularOpeningHours", 
             "places.nationalPhoneNumber", 
