@@ -80,6 +80,12 @@ pip install git+https://github.com/fvarrui/business-finder.git
 
 > Por supuesto, debes tener Python instalado en tu sistema.
 
+Si ya has instalado alguna versión de `business-finder`, puedes actualizarlo con el siguiente comando:
+
+```bash
+pip install --upgrade --force-reinstall --no-cache-dir git+https://github.com/fvarrui/business-finder.git
+```
+
 ## Para desarrolladores
 
 Si quieres colaborar en el desarrollo de **Business Finder**, puedes hacerlo de la siguiente manera.
