@@ -16,7 +16,7 @@ Para buscar empresas, se debe utilizar el script `bf` desde la línea de comando
 $ bf --search --category informática --location "Santa Cruz de Tenerife" --radius 5
 ```
 
-> Si no se especifica fichero de salida con la opción `--output`, los resultados se mostrarán por pantalla.
+> Si no se especifica fichero de salida con las opciones `--excel` o `--csv`, los resultados se mostrarán por pantalla.
 
 Para obtener ayuda sobre cómo usar el script, se puede utilizar la opción `--help`:
 
@@ -46,9 +46,11 @@ Opciones:
 
 ## ¿Qué se necesita?
 
-Para poder utilizar **Business Finder** se necesita una clave de API de Google Places API. Esta clave se debe especificar en la variable de entorno `GOOGLE_PLACES_API_KEY`:
+Para poder utilizar **Business Finder** se necesita una clave de API de Google Places API. 
 
-> Para obtener una clave de API de Google Places API, visita la [documentación de Google](https://developers.google.com/maps/documentation/places/web-service/get-api-key).
+Para obtener una clave de API de Google Places API, visita la [documentación de Google](https://developers.google.com/maps/documentation/places/web-service/get-api-key).
+
+Es posible especificar la API KEY cuando se ejecuta `bf` con la opción `--apikey`. Si no se especifica, se buscará en la variable de entorno `GOOGLE_PLACES_API_KEY`, que puedes definir de la siguiente manera:
 
 ### Linux 
 
