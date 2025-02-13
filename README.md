@@ -50,6 +50,7 @@ Ejemplo:
 
 ```bash
 $ bf --search --category "software" --location "silicon valley, california" --radius 5
+
 Buscando empresas de la categoría 'software' en 'silicon valley, california' con un radio de 5.0 km...
 +-----------------------------------------+---------------+------------------------------------------+----------------+-----------------------------------+
 | Nombre                                  | Tipo          | Dirección                                | Teléfono       | Web                               |
