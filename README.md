@@ -105,7 +105,7 @@ Tiempo transcurrido: 2.81 s
 
 Para poder utilizar **Business Finder** se necesita una clave de API de Google Places API. 
 
-Para obtener una clave de API de Google Places API, visita la [documentación de Google](https://developers.google.com/maps/documentation/places/web-service/get-api-key).
+Para más información sobre cómo [obtener una clave de API de Google Places API](https://console.cloud.google.com/google/maps-apis/credentials) visita la [documentación de Google](https://developers.google.com/maps/documentation/places/web-service/get-api-key).
 
 Es posible especificar la API KEY cuando se ejecuta `bf` con la opción `--apikey`. Si no se especifica, se buscará en la variable de entorno `GOOGLE_PLACES_API_KEY`, que puedes definir de la siguiente manera:
 
