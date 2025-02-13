@@ -1,5 +1,7 @@
 # Business Finder
 
+![Versión](https://img.shields.io/badge/Versión-0.2.0-black)
+
 Aplicación Python que busca información de empresas en el servicio web [Places API](https://developers.google.com/maps/documentation/places) de Google.
 
 > Útil para encontrar empresas de prácticas para estudiantes.
@@ -124,3 +126,7 @@ code .
 ## ¿Cómo contribuir?
 
 ¡Tus PRs son bienvenidos!
+
+--- 
+
+Made with ❤️ by [fvarrui](https://github.com/fvarrui)
