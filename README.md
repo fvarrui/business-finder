@@ -12,7 +12,9 @@ La función principal de **Business Finder** es buscar empresas en el servicio w
 
 ## ¿Cómo se usa?
 
-Para buscar empresas, se debe utilizar el script `bf` desde la línea de comandos. Por ejemplo, para buscar empresas de informática en Santa Cruz de Tenerife en un radio de 5 km:
+Para buscar empresas, se debe utilizar el comando `bf` desde un terminal. 
+
+Por ejemplo, para buscar empresas de informática en Santa Cruz de Tenerife en un radio de 5 km:
 
 ```bash
 $ bf --search --category informática --location "Santa Cruz de Tenerife" --radius 5
